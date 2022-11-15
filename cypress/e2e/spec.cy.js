@@ -1,5 +1,3 @@
-import { postUrl } from "../../src/apiCalls";
-
 describe('URL shortener spec', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {
