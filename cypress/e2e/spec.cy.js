@@ -1,3 +1,5 @@
+import { postUrl } from "../../src/apiCalls";
+
 describe('URL shortener spec', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {
@@ -51,7 +53,9 @@ describe('URL shortener spec', () => {
       {
         statusCode: 200,
         body: {
+          id: 2,
           long_url: 'https://www.boredpanda.com/blog/wp-content/uploads/2015/07/cutest-sleeping-kitties-ever-106__605.jpg',
+          short_url: 'http://localhost:3001/useshorturl/2',
           title: 'Sleepy Kitten',
         }
       });
@@ -59,11 +63,10 @@ describe('URL shortener spec', () => {
     cy.get('[data-cy="url-input"]').type('https://www.boredpanda.com/blog/wp-content/uploads/2015/07/cutest-sleeping-kitties-ever-106__605.jpg');
     cy.get('[data-cy="submit-button"]').click();
 
+
     cy.get('[data-cy="url-card"] > :nth-child(2)').should('exist');
     cy.get('[data-cy="url-card"] > :nth-child(2)').should('be.visible');
-
-    // still working on getting my post intercept to display after click
-    // cy.get('[data-cy="url-card"] > :nth-child(2)').contains('http://localhost:3001/useshorturl/2');
+    cy.get('[data-cy="url-card"] > :nth-child(2)').contains('http://localhost:3001/useshorturl/2');
   });
 
 });
