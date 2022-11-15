@@ -3,7 +3,6 @@ import './UrlContainer.css';
 
 const UrlContainer = ({ urls }) => {
   const urlEls = urls.map(url => {
-    console.log(url);
     return (
       <div className="url" key={ url.id }>
         <h3>{ url.title }</h3>
@@ -14,7 +13,7 @@ const UrlContainer = ({ urls }) => {
   });
 
   return (
-    <section>
+    <section data-cy='url-card'>
       { urlEls.length ? urlEls : <p>No urls yet! Find some to shorten!</p> }
     </section>
   );

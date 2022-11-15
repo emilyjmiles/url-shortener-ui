@@ -34,11 +34,10 @@ export class App extends Component {
   render() {
     return (
       <main className="App">
-        <header>
-          <h1>URL Shortener</h1>
+        <header data-cy='header'>
+          <h1 data-cy='app-title'>URL Shortener</h1>
           <UrlForm addUrl={ this.addUrl } />
         </header>
-
         <UrlContainer urls={ this.state.urls } />
       </main>
     );
